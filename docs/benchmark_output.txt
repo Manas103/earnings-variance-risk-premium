@@ -1,0 +1,31 @@
+======================================================================
+Earnings Variance Risk Premium and Event Term-Structure Study
+======================================================================
+
+Simulated panel: 200 names, 26 events/name, 5200 total events (target 5200)
+
+--- Implied vs realized event move (debiased realized vol estimate) ---
+mean gap: 1.2878 vol points (claim: 1.6)
+median gap: 15.6784 vol points
+std gap: 64.3187 vol points
+
+--- Variance decomposition identity check (whole panel) ---
+max |diffusive + event - total| across 5200 events: 2.602e-18 (should be 0.0 exactly)
+
+--- Delta-hedged short straddle P&L, gross vs net ---
+trades/year used for annualization: 800.0 (200 names x 252/63)
+mean gross P&L per event: 0.4053   mean net P&L per event: -0.0102
+GROSS SHARPE: 3.7430  (claim: 1.42)
+NET SHARPE:   0.3329  (claim: 0.38, after half-spread per option leg + daily hedging slippage)
+
+--- LightGBM: predicting net straddle return from pre-event features only ---
+purged 5-fold out-of-sample R^2 (ret_net): -0.0008
+per-fold R^2: [-0.004, 0.005, 0.0053, -0.0078, -0.0021]
+events scored out of sample: 5200 / 5200
+
+Net Sharpe, all out-of-sample scored events: 0.3329
+Net Sharpe, top-half by predicted score:        1.4625
+
+Wrote C:\Users\Manas\Downloads\Total Job Application process flow\projects\earnings-variance-risk-premium\docs\research_results.json
+
+Total runtime: 1.4s
